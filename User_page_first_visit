@@ -1,0 +1,14 @@
+#models.py
+
+class FirstVisit(models.Model):
+    url = models.URLField()
+    user = models.ForeignKey('auth.User')
+
+
+#views.py
+
+def my_view(request):
+   if not FisrtVisit.objects.filter(user=request.user.id, url=request.path).exists():
+      #he visits for the first time
+      #your code...
+      FisrtVisit(user=request.user, url=request.path).save()
